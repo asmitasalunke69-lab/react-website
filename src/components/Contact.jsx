@@ -12,7 +12,7 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
-    if (!form.name || !form.email || !form.message) {
+    if (!form.name ||!form.email ||!form.message) {
       alert("Please fill all fields ❌");
       return;
     }
@@ -27,15 +27,9 @@ export default function Contact() {
 
       alert(response.data.message || "Message Sent Successfully 🚀");
 
-      // Reset form
-      setForm({
-        name: "",
-        email: "",
-        message: "",
-      });
+      setForm({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("Contact Error:", error);
-
       alert(
         error.response?.data?.message ||
           "Message send failed. Please try again ❌"
@@ -46,150 +40,62 @@ export default function Contact() {
   };
 
   return (
-    <>
-      <div
-        style={{
-          minHeight: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          background: "linear-gradient(135deg,#667eea,#764ba2)",
-          padding: "20px",
-        }}
-      >
-        <div
-          style={{
-            width: "450px",
-            padding: "35px",
-            borderRadius: "25px",
-            background: "rgba(255,255,255,0.15)",
-            backdropFilter: "blur(15px)",
-            boxShadow: "0 20px 50px rgba(0,0,0,0.3)",
-            color: "#fff",
-            animation: "fadeIn 1s ease",
-          }}
-        >
-          <h2
-            style={{
-              textAlign: "center",
-              marginBottom: "25px",
-              fontSize: "28px",
-              letterSpacing: "1px",
-            }}
-          >
-            📩 Contact Us
-          </h2>
+    <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-[#667eea] to-[#764ba2] p-4 md:p-6">
+      <div className="w-full max-w-[450px] p-6 md:p-8 rounded-3xl bg-white/15 backdrop-blur-[15px] shadow-2xl text-white animate-fadeIn">
 
-          {/* Name */}
-          <div style={inputBox}>
-            <FaUser />
+        <h2 className="text-center mb-6 text-2xl md:text-3xl font-bold tracking-wide">
+          📩 Contact Us
+        </h2>
 
-            <input
-              type="text"
-              placeholder="Your Name"
-              value={form.name}
-              style={input}
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  name: e.target.value,
-                })
-              }
-            />
-          </div>
-
-          {/* Email */}
-          <div style={inputBox}>
-            <FaEnvelope />
-
-            <input
-              type="email"
-              placeholder="Your Email"
-              value={form.email}
-              style={input}
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  email: e.target.value,
-                })
-              }
-            />
-          </div>
-
-          {/* Message */}
-          <div style={inputBox}>
-            <FaCommentDots />
-
-            <textarea
-              placeholder="Your Message"
-              rows="4"
-              value={form.message}
-              style={{
-                ...input,
-                resize: "none",
-              }}
-              onChange={(e) =>
-                setForm({
-                  ...form,
-                  message: e.target.value,
-                })
-              }
-            />
-          </div>
-
-          {/* Button */}
-          <button
-            onClick={handleSubmit}
-            disabled={loading}
-            style={{
-              width: "100%",
-              padding: "14px",
-              marginTop: "15px",
-              background: loading
-                ? "#999"
-                : "linear-gradient(90deg,#ff7eb3,#ff758c)",
-              border: "none",
-              borderRadius: "30px",
-              color: "#fff",
-              fontSize: "16px",
-              fontWeight: "bold",
-              cursor: loading ? "not-allowed" : "pointer",
-              transition: "0.3s",
-            }}
-            onMouseEnter={(e) => {
-              if (!loading) {
-                e.target.style.transform = "scale(1.05)";
-              }
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = "scale(1)";
-            }}
-          >
-            {loading ? "Sending..." : "Send Message 🚀"}
-          </button>
+        {/* Name */}
+        <div className="flex items-center gap-3 bg-white/20 p-3 rounded-2xl mb-4">
+          <FaUser className="text-lg" />
+          <input
+            type="text"
+            placeholder="Your Name"
+            value={form.name}
+            className="border-none outline-none bg-transparent w-full text-white placeholder-white/70 text-sm"
+            onChange={(e) => setForm({...form, name: e.target.value })}
+          />
         </div>
+
+        {/* Email */}
+        <div className="flex items-center gap-3 bg-white/20 p-3 rounded-2xl mb-4">
+          <FaEnvelope className="text-lg" />
+          <input
+            type="email"
+            placeholder="Your Email"
+            value={form.email}
+            className="border-none outline-none bg-transparent w-full text-white placeholder-white/70 text-sm"
+            onChange={(e) => setForm({...form, email: e.target.value })}
+          />
+        </div>
+
+        {/* Message */}
+        <div className="flex items-start gap-3 bg-white/20 p-3 rounded-2xl mb-4">
+          <FaCommentDots className="text-lg mt-1" />
+          <textarea
+            placeholder="Your Message"
+            rows="4"
+            value={form.message}
+            className="border-none outline-none bg-transparent w-full text-white placeholder-white/70 text-sm resize-none"
+            onChange={(e) => setForm({...form, message: e.target.value })}
+          />
+        </div>
+
+        {/* Button */}
+        <button
+          onClick={handleSubmit}
+          disabled={loading}
+          className={`w-full py-3 mt-2 rounded-full text-white font-bold transition duration-300 ${
+            loading
+             ? "bg-gray-400 cursor-not-allowed"
+              : "bg-gradient-to-r from-[#ff7eb3] to-[#ff758c] hover:scale-105"
+          }`}
+        >
+          {loading? "Sending..." : "Send Message 🚀"}
+        </button>
       </div>
-    </>
+    </div>
   );
 }
-
-/* Styles */
-
-const inputBox = {
-  display: "flex",
-  alignItems: "center",
-  gap: "10px",
-  background: "rgba(255,255,255,0.2)",
-  padding: "10px 15px",
-  borderRadius: "15px",
-  marginBottom: "15px",
-};
-
-const input = {
-  border: "none",
-  outline: "none",
-  background: "transparent",
-  width: "100%",
-  color: "#fff",
-  fontSize: "14px",
-};
