@@ -32,7 +32,6 @@ export default function Login() {
 
       console.log("LOGIN RESPONSE:", response.data);
 
-      // Backend response मधून user ID
       const userId =
         response.data.user?._id ||
         response.data._id ||
@@ -43,17 +42,13 @@ export default function Login() {
         return;
       }
 
-      // Save user ID
       localStorage.setItem("userId", userId);
-
-      // Optional: save user data
       localStorage.setItem(
         "user",
         JSON.stringify(response.data.user || response.data)
       );
 
       alert("Login Successful! 🎉");
-
       navigate("/products");
     } catch (error) {
       console.error(
@@ -79,35 +74,37 @@ export default function Login() {
         alignItems: "center",
         background:
           "linear-gradient(135deg, #667eea, #764ba2)",
-        padding: "20px",
+        padding: "12px", // 20px > 12px
       }}
     >
       <form
         onSubmit={handleLogin}
         style={{
           width: "100%",
-          maxWidth: "420px",
+          maxWidth: "380px", // 420px > 380px
           background: "white",
-          padding: "35px",
-          borderRadius: "25px",
-          boxShadow: "0 15px 40px rgba(0,0,0,0.2)",
+          padding: "25px", // 35px > 25px
+          borderRadius: "20px", // 25px > 20px
+          boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
         }}
       >
         <h1
           style={{
             textAlign: "center",
-            marginBottom: "10px",
+            marginBottom: "8px",
             color: "#333",
+            fontSize: "24px" // font kami kela
           }}
         >
           🔐 Login
         </h1>
-<p> Don't have an account? <a href="/register">Sign up</a></p>
+        <p style={{textAlign: "center", marginBottom: "15px"}}> Don't have an account? <a href="/register" style={{color: "#667eea", fontWeight: "600"}}>Sign up</a></p>
         <p
           style={{
             textAlign: "center",
             color: "#777",
-            marginBottom: "25px",
+            marginBottom: "20px", // 25px > 20px
+            fontSize: "14px" // font kami
           }}
         >
           Login to continue shopping
@@ -122,11 +119,12 @@ export default function Login() {
           required
           style={{
             width: "100%",
-            padding: "13px",
-            marginBottom: "15px",
-            borderRadius: "10px",
+            padding: "12px", // 13px > 12px
+            marginBottom: "12px", // 15px > 12px
+            borderRadius: "8px", // 10px > 8px
             border: "1px solid #ddd",
             boxSizing: "border-box",
+            fontSize: "14px"
           }}
         />
 
@@ -139,11 +137,12 @@ export default function Login() {
           required
           style={{
             width: "100%",
-            padding: "13px",
-            marginBottom: "20px",
-            borderRadius: "10px",
+            padding: "12px",
+            marginBottom: "18px", // 20px > 18px
+            borderRadius: "8px",
             border: "1px solid #ddd",
             boxSizing: "border-box",
+            fontSize: "14px"
           }}
         />
 
@@ -152,13 +151,13 @@ export default function Login() {
           disabled={loading}
           style={{
             width: "100%",
-            padding: "13px",
+            padding: "12px", // 13px > 12px
             border: "none",
-            borderRadius: "25px",
+            borderRadius: "20px", // 25px > 20px
             background:
               "linear-gradient(90deg, #667eea, #764ba2)",
             color: "white",
-            fontSize: "16px",
+            fontSize: "15px", // 16px > 15px
             fontWeight: "bold",
             cursor: "pointer",
           }}
@@ -171,13 +170,14 @@ export default function Login() {
           onClick={() => navigate("/")}
           style={{
             width: "100%",
-            marginTop: "12px",
-            padding: "12px",
+            marginTop: "10px", // 12px > 10px
+            padding: "11px", // 12px > 11px
             border: "none",
-            borderRadius: "25px",
+            borderRadius: "20px",
             background: "#eee",
             color: "#333",
             cursor: "pointer",
+            fontSize: "14px"
           }}
         >
           ← Back to Home
